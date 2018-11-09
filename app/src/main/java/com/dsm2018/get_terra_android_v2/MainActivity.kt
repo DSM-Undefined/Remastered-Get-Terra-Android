@@ -5,24 +5,27 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView : RecyclerView
-    var boothNameList = arrayListOf<BoothNameList>(
-            BoothNameList("Undefined"),
-            BoothNameList("Gram"),
-            BoothNameList("시나브로"),
-            BoothNameList("Lapio"),
-            BoothNameList("Sweetfab")
-    )
+    var color = 1
+    var boothNameList = arrayListOf<BoothNameList>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setBackground(0)                    // 팀 색상 설정
+        setBackground()                    // 팀 색상 설정
+        setBoothName()
         setRecyclerView()                  // 부스 리스트 설정
+
+        val QRCodeButton = findViewById<ImageView>(R.id.main_qrcode_btn)
+        QRCodeButton.setOnClickListener {
+            Toast.makeText(this,"hello",Toast.LENGTH_SHORT).show()
+        }
     }
 
-    fun setBackground(color : Int) : Unit{
+    fun setBackground() : Unit{ // 각 팀에 대한 색상 레이아웃 설정
         val topBackGround = findViewById<View>(R.id.main_topbackground_v)
 
         when (color) { // 배경의 색을 결정지음.
@@ -30,8 +33,24 @@ class MainActivity : AppCompatActivity() {
             1 -> topBackGround.setBackgroundResource(R.drawable.back_teamblue_main)  // 파란팀의 경우 파란색으로.
         }
     }
-    
-    fun setRecyclerView() : Unit{
+
+    fun setBoothName() : Unit{ // 부스이름(동아리명)데이터 등록
+        boothNameList = arrayListOf<BoothNameList>(
+                BoothNameList("Undefined", color, true),
+                BoothNameList("Gram", color, false),
+                BoothNameList("시나브로", color, true),
+                BoothNameList("Lapio", color, true),
+                BoothNameList("Sweetfab", color, false),
+                BoothNameList("GG", color, true),
+                BoothNameList("MoreDeep", color, false),
+                BoothNameList("Bench",color, true),
+                BoothNameList("D", color, false),
+                BoothNameList("Nonamed", color, true),
+                BoothNameList("ClubName", color, true)
+        )
+    }
+
+    fun setRecyclerView() : Unit{ // 리사이클러뷰 생성
 
         val adapter = MainRvAdapter(this, boothNameList)
         val lm = LinearLayoutManager(this)
