@@ -22,6 +22,4 @@ public class ServiceGenerator {
         return retrofit;
     }
 
-
-
 }
