@@ -8,6 +8,12 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface API {
-    @POST("session")
-    Call<Void> post_login(@Body JsonObject jsonObject);
+    @GET("/auth/{gameKey}")
+    Call<Void> key_certified(@Body JsonObject jsonObject);
+
+    @POST("/auth/{gameKey}")
+    Call<Void> login(@Body JsonObject jsonObject);
+
+
+
 }
