@@ -7,7 +7,7 @@
         android:left="4dp">
         <shape
             android:shape="oval">
-            <solid android:color="#ffa4d2e6" />
+            <solid/>
         </shape>
     </item>
 </layer-list>

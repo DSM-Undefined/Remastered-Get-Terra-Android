@@ -16,13 +16,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <ImageView
         android:id="@+id/main_topbackground_v"
         android:layout_width="650dp"
         android:layout_height="500dp"
         android:layout_marginStart="-300dp"
         android:layout_marginEnd="-300dp"
-        android:background="@drawable/back_teamgreen_main"
+        android:src="@drawable/back_teamcolor_main"
         app:layout_constraintBottom_toTopOf="@+id/main_mainbackground_v"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

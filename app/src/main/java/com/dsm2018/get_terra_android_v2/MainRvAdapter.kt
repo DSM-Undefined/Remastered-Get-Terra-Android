@@ -20,8 +20,16 @@ class MainRvAdapter (val context: Context, private val boothNameList : ArrayList
         return boothNameList.size
     }
 
-    override fun onBindViewHolder(p0: BoothHolder, p1: Int) {
-        p0?.bind(boothNameList[p1], context)
+    override fun onBindViewHolder(holder: BoothHolder, position: Int) {
+        /*if(boothNameList[position].isToken){
+            when(boothNameList[position].teamColor){
+                0 -> holder.boothText.setTextColor(0xFFFFFF)
+                else -> holder.boothText.setTextColor(0x000000)
+            }
+        } else {
+            holder.boothText.setTextColor(0xFFB587)
+        }*/
+        holder?.bind(boothNameList[position], context)
     }
     inner class BoothHolder(v:View) : RecyclerView.ViewHolder(v){
         val boothText = v?.findViewById<TextView>(R.id.main_item_tv)
