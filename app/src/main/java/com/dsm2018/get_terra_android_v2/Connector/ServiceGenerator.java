@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    private static final String URL = "http://localhost:5000/";
+    private static final String URL = "http://ec2.istruly.sexy:1234/docs#/";
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
@@ -18,5 +18,4 @@ public class ServiceGenerator {
     public static <S> S createService(Class<S> serviceClass) {
         return retrofit.create(serviceClass);
     }
-
 }

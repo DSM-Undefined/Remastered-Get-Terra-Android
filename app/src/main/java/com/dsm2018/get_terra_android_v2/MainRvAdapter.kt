@@ -22,7 +22,7 @@ class MainRvAdapter (val context: Context, private val boothNameList : ArrayList
     }
 
     override fun onBindViewHolder(holder: BoothHolder, position: Int) {
-        if(boothNameList[position].isToken){
+        if(boothNameList[position].isToken){ // 텍스트컬러 지정
             holder.boothText.setTextColor(Color.parseColor(boothNameList[position].teamColor))
         } else {
             holder.boothText.setTextColor(Color.parseColor("#ffb587"))
@@ -31,7 +31,7 @@ class MainRvAdapter (val context: Context, private val boothNameList : ArrayList
     }
     inner class BoothHolder(v:View) : RecyclerView.ViewHolder(v){
         val boothText = v?.findViewById<TextView>(R.id.main_item_tv)
-        fun bind(boothInfo: BoothNameList, context: Context)
+        fun bind(boothInfo: BoothNameList, context: Context) // 텍스트 지정
         {
             boothText?.text = boothInfo.boothName
         }
