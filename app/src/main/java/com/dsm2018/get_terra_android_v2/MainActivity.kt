@@ -2,20 +2,14 @@ package com.dsm2018.get_terra_android_v2
 
 import android.content.Intent
 import android.graphics.*
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.StateListDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.util.TypedValue
-import android.view.View
 import android.widget.ImageView
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
-import java.security.AccessController.getContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView : RecyclerView
