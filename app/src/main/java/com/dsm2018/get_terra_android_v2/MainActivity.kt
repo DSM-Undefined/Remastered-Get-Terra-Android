@@ -7,13 +7,20 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
+import com.dsm2018.get_terra_android_v2.Connector.API
+import com.dsm2018.get_terra_android_v2.Connector.ServiceGenerator
+import com.google.gson.JsonArray
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
+import retrofit2.Call
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView : RecyclerView
-    var color = "#00ff00"
+    var color = "#00aaff"
     var boothNameList = arrayListOf<BoothNameList>()
+    //var service = ServiceGenerator.createService(API::class.java)
+    //lateinit var request : Call<JsonArray>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,7 +34,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {//액티비티 재실행시에 리사이클러뷰 재생성
         super.onResume()
-        setBoothName()                    //부스 데이터 설정
+        //request = service.getMap("")
+        setBoothName(/*request*/)                    //부스 데이터 설정
         setRecyclerView()                  // 부스 리스트 설정,보여주기
     }
 
@@ -38,10 +46,10 @@ class MainActivity : AppCompatActivity() {
 
     fun setBackground() : Unit{ // 각 팀에 대한 색상 레이아웃 설정
         val topBackground = findViewById<ImageView>(R.id.main_topbackground_v)
-        topBackground.drawable.setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
+        topBackground.setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
     }
 
-    fun setBoothName() : Unit{ // 부스이름(동아리명)데이터 등록
+    fun setBoothName(/*request : Call<JsonArray>*/) : Unit{ // 부스이름(동아리명)데이터 등록
         boothNameList = arrayListOf<BoothNameList>(
                 BoothNameList("Undefined", color, true),
                 BoothNameList("Gram", color, false),
@@ -49,12 +57,13 @@ class MainActivity : AppCompatActivity() {
                 BoothNameList("Lapio", color, true),
                 BoothNameList("Sweetfab", color, false),
                 BoothNameList("GG", color, true),
-                BoothNameList("MoreDeep", color, false),
+                BoothNameList("MoDeep", color, false),
                 BoothNameList("Bench",color, true),
                 BoothNameList("D", color, false),
                 BoothNameList("Nonamed", color, true),
-                BoothNameList("ClubName", color, true)
+                BoothNameList("Phantom",color,false)
         )
+        boothNameList.add(BoothNameList("ClubName", color, true))
     }
 
     fun setRecyclerView() : Unit{ // 리사이클러뷰 생성
