@@ -22,7 +22,7 @@ class MainRvAdapter (val context: Context, private val boothNameList : ArrayList
     }
 
     override fun onBindViewHolder(holder: BoothHolder, position: Int) {
-        if(boothNameList[position].isToken){ // 텍스트컬러 지정
+        if(boothNameList[position].isToken==1){ // 텍스트컬러 지정
             holder.boothText.setTextColor(Color.parseColor(boothNameList[position].teamColor))
         } else {
             holder.boothText.setTextColor(Color.parseColor("#ffb587"))

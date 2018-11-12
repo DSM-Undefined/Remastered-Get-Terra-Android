@@ -8,18 +8,21 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
 import com.dsm2018.get_terra_android_v2.Connector.API
+import com.dsm2018.get_terra_android_v2.Connector.GetMap
 import com.dsm2018.get_terra_android_v2.Connector.ServiceGenerator
-import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
+import org.json.JSONObject
 import retrofit2.Call
+import retrofit2.Callback
+
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView : RecyclerView
     var color = "#00aaff"
     var boothNameList = arrayListOf<BoothNameList>()
-    //var service = ServiceGenerator.createService(API::class.java)
-    //lateinit var request : Call<JsonArray>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {//액티비티 재실행시에 리사이클러뷰 재생성
         super.onResume()
-        //request = service.getMap("")
-        setBoothName(/*request*/)                    //부스 데이터 설정
+        setBoothName()                    //부스 데이터 설정
         setRecyclerView()                  // 부스 리스트 설정,보여주기
     }
 
@@ -49,21 +51,48 @@ class MainActivity : AppCompatActivity() {
         topBackground.setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
     }
 
-    fun setBoothName(/*request : Call<JsonArray>*/) : Unit{ // 부스이름(동아리명)데이터 등록
+    fun getAPI() : JSONObject{
+        var service = ServiceGenerator.createService(API::class.java)
+        var call : Call<GetMap> = service.getMap("토오오오큰")
+        var boothList = JSONObject()
+        call.enqueue(object : Callback<GetMap>{
+            override fun onResponse(call : Call<GetMap>, response : Response<GetMap>){
+                val repo : GetMap = response.body()
+                color = repo.myTeamColor
+                boothList = repo.map
+            }
+            override fun onFailure(call : Call<GetMap>, t : Throwable){
+            }
+        })
+        return boothList
+    }
+
+    fun setBoothName() : Unit{ // 부스이름(동아리명)데이터 등록N
+        /*val boothList = getAPI()
+        var i = boothList.keys()
+        var keyList = ArrayList<String>()
+        var idx = 0
+        while(i.hasNext()){
+            var b = i.next().toString()
+            keyList.add(b)
+            var t = boothList.getInt(keyList.get(idx))
+            idx++
+            boothNameList.add(BoothNameList(b,color,t))
+        }*/
         boothNameList = arrayListOf<BoothNameList>(
-                BoothNameList("Undefined", color, true),
-                BoothNameList("Gram", color, false),
-                BoothNameList("시나브로", color, true),
-                BoothNameList("Lapio", color, true),
-                BoothNameList("Sweetfab", color, false),
-                BoothNameList("GG", color, true),
-                BoothNameList("MoDeep", color, false),
-                BoothNameList("Bench",color, true),
-                BoothNameList("D", color, false),
-                BoothNameList("Nonamed", color, true),
-                BoothNameList("Phantom",color,false)
+                BoothNameList("Undefined", color, 1),
+                BoothNameList("Gram", color, 0),
+                BoothNameList("시나브로", color, -1),
+                BoothNameList("Lapio", color, 1),
+                BoothNameList("Sweetfab", color, 1),
+                BoothNameList("GG", color, 0),
+                BoothNameList("MoDeep", color, -1),
+                BoothNameList("Bench",color, 1),
+                BoothNameList("D", color, 0),
+                BoothNameList("Nonamed", color, 1),
+                BoothNameList("Phantom",color,0)
         )
-        boothNameList.add(BoothNameList("ClubName", color, true))
+        boothNameList.add(BoothNameList("ClubName", color, 1))
     }
 
     fun setRecyclerView() : Unit{ // 리사이클러뷰 생성
