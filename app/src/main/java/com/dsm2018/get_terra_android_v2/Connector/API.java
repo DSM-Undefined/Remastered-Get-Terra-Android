@@ -8,19 +8,21 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface API {
     @GET("/solve/{boothName}")
-    @Headers("Authorization")
-    Call<Void>getQuestion(
-            @Path("boothName") String boothName,
-            @Body JsonObject jsonObject);
+    Call<solveGet>getQuestion(
+            @Header("Authorization") String authorization,
+            @Path("boothName") String boothName);
+
     @POST("/solve/{boothName}")
-    @Headers({"Authorization","Content-Type: application/json" })
+    @Headers("Content-Type: application/json" )
     Call<Void>postQuestion(
+        @Header("Authorization")String authorization,
         @Path("boothName")String boothName,
         @Body JsonObject jsonObject
     );

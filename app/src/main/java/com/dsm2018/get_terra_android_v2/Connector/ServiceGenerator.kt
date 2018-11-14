@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceGenerator {
 
-    private val URL = "http://localhost:5000/"
+    private val URL = "http://ec2.istruly.sexy:1234/"
     private val httpClient = OkHttpClient.Builder()
     private val builder = Retrofit.Builder()
             .baseUrl(URL)
