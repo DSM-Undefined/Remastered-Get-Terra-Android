@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.widget.ImageView
 import com.dsm2018.get_terra_android_v2.Connector.API
 import com.dsm2018.get_terra_android_v2.Connector.GetMap
@@ -19,10 +20,23 @@ import retrofit2.Callback
 
 import retrofit2.Response
 
+/*{
+  "map": {
+    "GRAM": 1,
+    "LUNA": -1,
+    "NoNamed": -1,
+    "Undefined": 1,
+    "시나브로": 0
+  },
+  "myTeam": 3,
+  "myTeamColor": "#58c9b9"
+}*/
+
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView : RecyclerView
-    var color = "#00aaff"
+    var color = "#3333ff"
     var boothNameList = arrayListOf<BoothNameList>()
+    var boothList = JsonObject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,24 +65,25 @@ class MainActivity : AppCompatActivity() {
         topBackground.setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
     }
 
-    fun getAPI() : JSONObject{
+    fun getAPI(){
         var service = ServiceGenerator.createService(API::class.java)
         var call : Call<GetMap> = service.getMap("토오오오큰")
-        var boothList = JSONObject()
+
         call.enqueue(object : Callback<GetMap>{
             override fun onResponse(call : Call<GetMap>, response : Response<GetMap>){
                 val repo : GetMap = response.body()
+                //val repoCode = response.code()
                 color = repo.myTeamColor
                 boothList = repo.map
             }
             override fun onFailure(call : Call<GetMap>, t : Throwable){
+                Log.e("응 너 에러", "응 너 에러")
             }
         })
-        return boothList
     }
 
-    fun setBoothName() : Unit{ // 부스이름(동아리명)데이터 등록N
-        /*val boothList = getAPI()
+    fun setBoothName() : Unit{ // 부스이름(동아리명)데이터 등록
+        /*getAPI()
         var i = boothList.keys()
         var keyList = ArrayList<String>()
         var idx = 0
@@ -79,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             idx++
             boothNameList.add(BoothNameList(b,color,t))
         }*/
-        boothNameList = arrayListOf<BoothNameList>(
+        boothNameList = arrayListOf/*<BoothNameList>*/(
                 BoothNameList("Undefined", color, 1),
                 BoothNameList("Gram", color, 0),
                 BoothNameList("시나브로", color, -1),

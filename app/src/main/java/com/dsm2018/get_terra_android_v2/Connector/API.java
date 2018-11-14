@@ -5,8 +5,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 
 public interface API {
-    @GET("Map/")
+    @GET("map")
     Call<GetMap> getMap(
-            @Header("") String Authorization
+            @Header("Authorization") String Authorization
     );
 }
