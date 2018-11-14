@@ -36,7 +36,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView : RecyclerView
     var color = "#3333ff"
     var boothNameList = arrayListOf<BoothNameList>()
-    var boothList = JsonObject()
+    var boothList = JSONObject()
+    lateinit var Authorization : String
+    var isConnected : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {//액티비티 재실행시에 리사이클러뷰 재생성
         super.onResume()
+        isConnected = false
         setBoothName()                    //부스 데이터 설정
         setRecyclerView()                  // 부스 리스트 설정,보여주기
     }
@@ -66,35 +69,48 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getAPI(){
-        var service = ServiceGenerator.createService(API::class.java)
-        var call : Call<GetMap> = service.getMap("토오오오큰")
-
+        val service = ServiceGenerator.createService(API::class.java)
+        Authorization = "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDIyMzg4NTAsIm5iZiI6MTU0MjIzODg1MCwianRpIjoiODdhOGI3ZDgtZjE1YS00NGFjLWJkMTQtM2E4YjRmYzM3ZjQwIiwiZXhwIjoxNTQzMTAyODUwLCJpZGVudGl0eSI6InRtZGFscyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7InVzZXJfaWQiOiJ0bWRhbHMiLCJnYW1lX2tleSI6MTAwMDAwfX0.CpXBM-yGlSKbi-rRcgBTE8gn2vIqZix6dhrAtf3WgLA"
+        var call : Call<GetMap> = service.getMap(Authorization)
         call.enqueue(object : Callback<GetMap>{
-            override fun onResponse(call : Call<GetMap>, response : Response<GetMap>){
-                val repo : GetMap = response.body()
-                //val repoCode = response.code()
-                color = repo.myTeamColor
-                boothList = repo.map
+            override fun onResponse(call: Call<GetMap>?, response: Response<GetMap>) {
+                Log.e("서버접속","서버접속")
+                if(response.body()!=null){
+                    isConnected = true
+                    var repo : GetMap = response.body()
+                    //val repoCode = response.code()
+                    //if(repoCode==201){
+                    color = repo.myTeamColor
+                }
+                /*}
+                else{
+                    when(repoCode) {
+                        401 -> Toast.makeText(this@MainActivity,"토큰 없음.",Toast.LENGTH_SHORT).show()
+                        403 -> Toast.makeText(this@MainActivity, "권한 없음.", Toast.LENGTH_SHORT).show()
+                    }
+                }*/
             }
-            override fun onFailure(call : Call<GetMap>, t : Throwable){
+            override fun onFailure(call: Call<GetMap>?, t: Throwable?) {
                 Log.e("응 너 에러", "응 너 에러")
             }
         })
     }
 
-    fun setBoothName() : Unit{ // 부스이름(동아리명)데이터 등록
-        /*getAPI()
-        var i = boothList.keys()
-        var keyList = ArrayList<String>()
-        var idx = 0
-        while(i.hasNext()){
-            var b = i.next().toString()
-            keyList.add(b)
-            var t = boothList.getInt(keyList.get(idx))
-            idx++
-            boothNameList.add(BoothNameList(b,color,t))
-        }*/
-        boothNameList = arrayListOf/*<BoothNameList>*/(
+    fun setBoothName(){ // 부스이름(동아리명)데이터 등록
+        getAPI()
+        if(isConnected==true){
+            var i = boothList.keys()
+            var keyList = ArrayList<String>()
+            var idx = 0
+            while(i.hasNext()){
+                var b = i.next().toString()
+                keyList.add(b)
+                var t = boothList.getInt(keyList.get(idx))
+                idx++
+                boothNameList.add(BoothNameList(b,color,t))
+            }
+        }
+        boothNameList = arrayListOf<BoothNameList>(
                 BoothNameList("Undefined", color, 1),
                 BoothNameList("Gram", color, 0),
                 BoothNameList("시나브로", color, -1),
