@@ -77,7 +77,8 @@ class MainActivity : AppCompatActivity() {
         call.enqueue(object : Callback<GetMap>{
             override fun onResponse(call: Call<GetMap>?, response: Response<GetMap>) {
                 Log.e("서버접속","서버접속")
-                if(response.code()!=200) Log.e("응답코드", response.code().toString())
+                if(response.code()!=200) Log.e("응답코드에러", response.code().toString())
+                else Log.e(response.code().toString(), response.code().toString() + "정상응답코드")
                 if(response.body()!=null){
                     isConnected = true
                     var repo : GetMap = response.body()
