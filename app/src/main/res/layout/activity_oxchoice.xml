@@ -1,6 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+​    xmlns:app="http://schemas.android.com/apk/res-auto"
+​    xmlns:tools="http://schemas.android.com/tools"
+​    android:layout_width="match_parent"
+​    android:layout_height="match_parent"
+​    android:background="#fff5f5">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/backcircle"
+        android:layout_width="402dp"
+        android:layout_height="323dp"
+        android:src="@drawable/im_activity_backcircle"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="146dp" />
+    
+    <ImageView
+        android:id="@+id/backquiz"
+        android:layout_width="403dp"
+        android:layout_height="352dp"
+        android:src="@drawable/im_activity_backquiz"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="318dp" />
+    
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="302dp" />
+    
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="441dp"
+        android:layout_height="284dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/im_activity_backquizview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    
+    <ImageView
+        android:id="@+id/im_background"
+        android:layout_width="91dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/im_activity_back"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="55dp" />
+    
+    <TextView
+        android:id="@+id/tv_quizcontent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="O/X"
+        android:textColor="#ffb587"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/im_background"
+        app:layout_constraintEnd_toEndOf="@+id/im_background"
+        app:layout_constraintStart_toStartOf="@+id/im_background" />
+    
+    <TextView
+        android:id="@+id/quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Q"
+        android:textColor="#ffb587"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_quizcontent" />
+    
+    <TextView
+        android:id="@+id/quizcontent"
+        android:layout_width="261dp"
+        android:layout_height="186dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="전승민바보전승민바보전승민바보전승민바보전승민바보전승민바보전승민바보전승민바보"
+        android:textColor="#ffb587"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/quiz"
+        tools:layout_editor_absoluteY="46dp"
+        tools:ignore="MissingConstraints" />
+    
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="303dp"
+        android:layout_height="100dp"
+        android:src="@drawable/im_activity_backanswer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="218dp"
+        tools:ignore="MissingConstraints" />
+    
+    <TextView
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="7sp"
+        android:textColor="#ffb587"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        tools:text="A" />
+    
+    <Button
+        android:id="@+id/answer_o"
+        android:layout_width="162dp"
+        android:layout_height="224dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bottonlog"
+        android:text="O"
+        android:textColor="#ffb587"
+        android:textSize="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/answer_x"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+    
+    <Button
+        android:id="@+id/answer_x"
+        android:layout_width="162dp"
+        android:layout_height="224dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bottonlog"
+        android:text="x"
+        android:textColor="#ffb587"
+        android:textSize="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="1.0" />
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent">master
+    </android.support.constraint.ConstraintLayout>

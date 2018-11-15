@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+​    xmlns:android="http://schemas.android.com/apk/res/android"
+​    xmlns:app="http://schemas.android.com/apk/res-auto"
+​    android:layout_width="match_parent"
+​    android:layout_height="match_parent"
+​    android:background="#d4e5ff">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/im_backcircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/im_activity_backcircle"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+    
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="330dp" />
+    
+    <Button
+        android:layout_width="201dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bottonlog"
+        android:text="메인으로"
+        android:textColor="#ffb587"
+        android:id="@+id/btn_main"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+    
+    <TextView
+        android:id="@+id/tv_booth"
+        android:layout_width="207dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="동아리명"
+        android:textColor="#ffffff"
+        android:textSize="52dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_answer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.536" />
+    
+    <TextView
+        android:id="@+id/tv_answer"
+        android:layout_width="188dp"
+        android:layout_height="139dp"
+        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="오답"
+        android:textColor="#ffffff"
+        android:textSize="95dp"
+        app:layout_constraintBottom_toBottomOf="@+id/im_backcircle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.constraint.ConstraintLayout>
