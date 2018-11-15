@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    private static final String URL = "http://localhost:5000/";
+    private static final String URL = "http://ec2.istruly.sexy:1234/";
 
     private static Retrofit retrofit = null;
     public static Retrofit getClient() {

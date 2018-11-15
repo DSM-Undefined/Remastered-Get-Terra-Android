@@ -3,7 +3,6 @@ package com.dsm2018.get_terra_android_v2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,47 +10,50 @@ import android.widget.Toast;
 
 import com.dsm2018.get_terra_android_v2.Connector.API;
 import com.dsm2018.get_terra_android_v2.Connector.ServiceGenerator;
+import com.dsm2018.get_terra_android_v2.sibal.PrefManager;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class LoginActivity extends AppCompatActivity {
     Button login;
-    Button signup;
+    EditText key_certificate;
+    EditText email;
     EditText ID;
     EditText password;
     String getID;
     String getPassword;
+    String getKeyCertificate;
+    String getEmail;
+    String getAccessToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        signup = (Button) findViewById(R.id.signup_btn);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
+        key_certificate = (EditText) findViewById(R.id.key_certificate_et);
         login = (Button) findViewById(R.id.login_btn);
         ID = (EditText) findViewById(R.id.id_et);
         password = (EditText) findViewById(R.id.password_et);
+        email = (EditText) findViewById(R.id.email_et);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getID = ID.getText().toString();
                 getPassword = password.getText().toString();
+                getKeyCertificate = key_certificate.getText().toString();
+                getEmail = email.getText().toString();
                 getID = getID.trim();
                 getPassword = getPassword.trim();
-                if (getID.getBytes().length <= 0 | getPassword.getBytes().length <= 0) {
-                    Toast.makeText(getApplicationContext(), "이메일 혹은 인증번호가 입력되지 않았습니다", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                getKeyCertificate = getKeyCertificate.trim();
+                getEmail = getEmail.trim();
+                if (getID.getBytes().length <= 0 | getPassword.getBytes().length <= 0 | getKeyCertificate.getBytes().length <= 0 | getEmail.getBytes().length <= 0) {
+                    Toast.makeText(getApplicationContext(), "입력이 완료되지 않았습니다", Toast.LENGTH_SHORT).show();
+                } else {
                     post();
                 }
             }
@@ -63,24 +65,29 @@ public class LoginActivity extends AppCompatActivity {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("id", getID);
         jsonObject.addProperty("password", getPassword);
-        Call<Void> call = retrofit.login(jsonObject);
-        call.enqueue(new Callback<Void>() {
+        jsonObject.addProperty("email", getEmail);
+        Call<JsonObject> call = retrofit.login(getKeyCertificate, jsonObject);
+        call.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                Void repo = response.body();
-                if (response.code() == 401) {
-                    Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(getApplicationContext(), KeyCertifiedActivity.class);
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                JsonObject repo = response.body();
+                getAccessToken=repo.get("accessToken").getAsString();
+                if (response.code() == 200) {
+                    Intent intent = new Intent(LoginActivity.this, TeamChoiceActivity.class);
+                    intent.putExtra("accessToken", getAccessToken);
                     startActivity(intent);
-                    finish();
+                } else if (response.code() == 204) {
+                    Toast.makeText(getApplicationContext(), "인증번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
+                PrefManager prefManager = new PrefManager();
+                prefManager.saveToken(getApplicationContext(), getAccessToken, true);
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
 
             }
         });
     }
+
 }

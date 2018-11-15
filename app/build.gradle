@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
@@ -16,6 +19,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        // Main source set is Kotlin!
+        main.java.srcDirs += 'src/main/kotlin'
+
+        // Unit tests live in src/unitTest.
+        test.java.srcDir 'src/unitTests/kotlin'
+
+        // Integration tests live in src/integrationTest.
+        test.java.srcDir 'src/integrationTests/kotlin'
+
+        // Unit tests for debug build type specific code live in src/debugUnitTest.
+        testDebug.java.srcDir 'src/debugUnitTests/kotlin'
+
+        // Unit tests for release build type specific code live in src/releaseUnitTest.
+        testRelease.java.srcDir 'src/releaseUnitTests/kotlin'
+
+        // Functional tests live in src/functionalTests.
+        androidTest.java.srcDir 'src/functionalTests/kotlin'
+    }
 }
 
 dependencies {
@@ -25,6 +47,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.0.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

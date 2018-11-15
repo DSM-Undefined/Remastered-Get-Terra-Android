@@ -26,13 +26,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/id_et"
+        android:id="@+id/key_certificate_et"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="70dp"
-        android:hint="아이디"
+        android:layout_marginTop="30dp"
+        android:hint="인증번호"
         android:textSize="19sp"
         android:textColorHint="#ffdba5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,12 +40,26 @@
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
+        android:id="@+id/id_et"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="아이디"
+        android:textColorHint="#ffdba5"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/key_certificate_et" />
+
+    <EditText
         android:id="@+id/password_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:hint="비밀번호"
         android:textSize="19sp"
         android:textColorHint="#ffdba5"
@@ -53,17 +67,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_et" />
 
-    <Button
-        android:id="@+id/signup_btn"
+    <EditText
+            android:id="@+id/email_et"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:text="Sign in"
-        android:textSize="28sp"
-        android:textColor="#ffb587"
-        android:background="@drawable/back_btn_signup"
+        android:layout_marginTop="20dp"
+        android:hint="이메일"
+        android:textSize="19sp"
+        android:textColorHint="#ffdba5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_et" />
@@ -74,13 +87,13 @@
         android:layout_height="48dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Log in"
-        android:textSize="28sp"
-        android:textColor="#ffb587"
+        android:layout_marginTop="30dp"
         android:background="@drawable/back_btn_login"
+        android:text="Log in"
+        android:textColor="#ffb587"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/email_et" />
 
 </android.support.constraint.ConstraintLayout>

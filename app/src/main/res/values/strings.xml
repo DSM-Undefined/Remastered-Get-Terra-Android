@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Get-Terra-Android-v2</string>
+    <string name="blueTeam">Team Blue</string>
+    <string name="greenTeam">Team Green</string>
+    <string name="yellowTeam">Team Yellow</string>
+    <string name="violetTeam">Team Violet</string>
 </resources>
