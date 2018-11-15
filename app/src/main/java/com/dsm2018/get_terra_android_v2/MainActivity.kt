@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import com.dsm2018.get_terra_android_v2.Connector.API
 import com.dsm2018.get_terra_android_v2.Connector.GetMap
 import com.dsm2018.get_terra_android_v2.Connector.ServiceGenerator
@@ -34,7 +35,7 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView : RecyclerView
-    var color = "#000000"
+    var color : String = "#000000"
     var boothNameList = arrayListOf<BoothNameList>()
     var boothList = JSONObject()
     lateinit var Authorization : String
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setBackground()                    // 팀 색상 설정
+        //setBackground()                    // 팀 색상 설정
 
         val QRCodeButton = findViewById<ImageView>(R.id.main_qrcode_btn)
         QRCodeButton.setOnClickListener { // QR코드 버튼 눌리면 QR코드 스캐너 시작.
@@ -72,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         val service = ServiceGenerator.createService(API::class.java)
         Authorization = "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDIyMzg4NTAsIm5iZiI6MTU0MjIzODg1MCwianRpIjoiODdhOGI3ZDgtZjE1YS00NGFjLWJkMTQtM2E4YjRmYzM3ZjQwIiwiZXhwIjoxNTQzMTAyODUwLCJpZGVudGl0eSI6InRtZGFscyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7InVzZXJfaWQiOiJ0bWRhbHMiLCJnYW1lX2tleSI6MTAwMDAwfX0.CpXBM-yGlSKbi-rRcgBTE8gn2vIqZix6dhrAtf3WgLA"
         var call : Call<GetMap> = service.getMap(Authorization)
+        color = "#000000"
         call.enqueue(object : Callback<GetMap>{
             override fun onResponse(call: Call<GetMap>?, response: Response<GetMap>) {
                 Log.e("서버접속","서버접속")
@@ -93,13 +95,14 @@ class MainActivity : AppCompatActivity() {
                 }*/
             }
             override fun onFailure(call: Call<GetMap>?, t: Throwable?) {
-                Log.e("응 너 에러", "응 너 에러")
+                Toast.makeText(this@MainActivity,"서버오류!",Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     fun setBoothName(){ // 부스이름(동아리명)데이터 등록
         getAPI()
+        setBackground()                    // 팀 색상 설정
         if(isConnected==true){
             var i = boothList.keys()
             var keyList = ArrayList<String>()
@@ -112,20 +115,20 @@ class MainActivity : AppCompatActivity() {
                 idx++
             }
         }
-        /*boothNameList = arrayListOf<BoothNameList>(
-                BoothNameList("Undefined", color, 1),
-                BoothNameList("Gram", color, 0),
-                BoothNameList("시나브로", color, -1),
-                BoothNameList("Lapio", color, 1),
-                BoothNameList("Sweetfab", color, 1),
-                BoothNameList("GG", color, 0),
-                BoothNameList("MoDeep", color, -1),
-                BoothNameList("Bench",color, 1),
-                BoothNameList("D", color, 0),
-                BoothNameList("Nonamed", color, 1),
-                BoothNameList("Phantom",color,0)
-        )
-        boothNameList.add(BoothNameList("ClubName", color, 1))*/
+
+        boothNameList.add(BoothNameList("Undefined", color, 1))
+        boothNameList.add(BoothNameList("Gram", color, 0))
+        boothNameList.add(BoothNameList("시나브로", color, -1))
+        boothNameList.add(BoothNameList("Lapio", color, 1))
+        boothNameList.add(BoothNameList("Sweetfab", color, 1))
+        boothNameList.add(BoothNameList("GG", color, 0))
+        boothNameList.add(BoothNameList("MoDeep", color, -1))
+        boothNameList.add(BoothNameList("Bench",color, 1))
+        boothNameList.add(BoothNameList("D", color, 0))
+        boothNameList.add(BoothNameList("Nonamed", color, 1))
+        boothNameList.add(BoothNameList("Phantom",color,0))
+
+        boothNameList.add(BoothNameList("ClubName", color, 1))
     }
 
     fun setRecyclerView() : Unit{ // 리사이클러뷰 생성
@@ -151,11 +154,10 @@ class MainActivity : AppCompatActivity() {
             }
             else{ // res.contents : QR코드 스캔 결과
                 val intent = Intent(this, MultiplechoiceActivity::class.java)
+                intent.putExtra("token", Authorization)
                 intent.putExtra("sendBoothName", res?.contents)
                 startActivity(intent)
             }
         }
     }
-
-
 }
