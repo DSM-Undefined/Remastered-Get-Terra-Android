@@ -15,15 +15,15 @@ import retrofit2.http.Path;
 
 public interface API {
     @GET("/solve/{boothName}")
-    Call<solveGet>getQuestion(
+    Call<solveGet> getQuestion(
             @Header("Authorization") String authorization,
             @Path("boothName") String boothName);
 
     @POST("/solve/{boothName}")
-    @Headers("Content-Type: application/json" )
-    Call<Void>postQuestion(
-        @Header("Authorization")String authorization,
-        @Path("boothName")String boothName,
-        @Body JsonObject jsonObject
+    @Headers("Content-Type: application/json")
+    Call<Void> postQuestion(
+            @Header("Authorization") String authorization,
+            @Path("boothName") String boothName,
+            @Body JsonObject jsonObject
     );
 }
