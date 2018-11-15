@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#d4e5ff">
+​    xmlns:android="http://schemas.android.com/apk/res/android"
+​    xmlns:app="http://schemas.android.com/apk/res-auto"
+​    android:layout_width="match_parent"
+​    android:layout_height="match_parent"
+​    android:background="#d4e5ff">
 
     <ImageView
         android:id="@+id/im_backcircle"
@@ -15,14 +15,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
+    
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="330dp" />
-
+    
     <Button
         android:layout_width="201dp"
         android:layout_height="48dp"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
+    
     <TextView
         android:id="@+id/tv_booth"
         android:layout_width="207dp"
@@ -57,7 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.536" />
-
+    
     <TextView
         android:id="@+id/tv_answer"
         android:layout_width="188dp"
@@ -70,5 +70,6 @@
         android:textSize="95dp"
         app:layout_constraintBottom_toBottomOf="@+id/im_backcircle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintStart_toStartOf="parent" />xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.constraint.ConstraintLayout>

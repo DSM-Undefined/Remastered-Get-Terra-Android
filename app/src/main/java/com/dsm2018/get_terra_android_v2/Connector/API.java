@@ -1,5 +1,4 @@
 package com.dsm2018.get_terra_android_v2.Connector;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -14,10 +13,10 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface API {
-    @GET("/solve/{boothName}") //
-    Call<solveGet> getQuestion(
-            @Header("Authorization") String authorization,
-            @Path("boothName") String boothName);
+​    @GET("/solve/{boothName}") //
+​    Call<solveGet> getQuestion(
+​            @Header("Authorization") String authorization,
+​            @Path("boothName") String boothName);
 
     @POST("/solve/{boothName}")
     @Headers("Content-Type: application/json")
@@ -26,4 +25,5 @@ public interface API {
             @Path("boothName") String boothName,
             @Body JsonObject jsonObject
     );
+    @GET("/map") Call<GetMap> getMap(@Header("Authorization") String Authorization);
 }

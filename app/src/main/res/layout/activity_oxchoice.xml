@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff5f5">
+​    xmlns:app="http://schemas.android.com/apk/res-auto"
+​    xmlns:tools="http://schemas.android.com/tools"
+​    android:layout_width="match_parent"
+​    android:layout_height="match_parent"
+​    android:background="#fff5f5">
 
     <ImageView
         android:id="@+id/backcircle"
@@ -14,14 +14,14 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+    
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="146dp" />
-
+    
     <ImageView
         android:id="@+id/backquiz"
         android:layout_width="403dp"
@@ -29,14 +29,14 @@
         android:src="@drawable/im_activity_backquiz"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="318dp" />
-
+    
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="302dp" />
-
+    
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="441dp"
@@ -47,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    
     <ImageView
         android:id="@+id/im_background"
         android:layout_width="91dp"
@@ -56,7 +56,7 @@
         android:src="@drawable/im_activity_back"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="55dp" />
-
+    
     <TextView
         android:id="@+id/tv_quizcontent"
         android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/im_background"
         app:layout_constraintEnd_toEndOf="@+id/im_background"
         app:layout_constraintStart_toStartOf="@+id/im_background" />
-
+    
     <TextView
         android:id="@+id/quiz"
         android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
         app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_quizcontent" />
-
+    
     <TextView
         android:id="@+id/quizcontent"
         android:layout_width="261dp"
@@ -99,7 +99,7 @@
         app:layout_constraintStart_toEndOf="@+id/quiz"
         tools:layout_editor_absoluteY="46dp"
         tools:ignore="MissingConstraints" />
-
+    
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="303dp"
@@ -110,7 +110,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="218dp"
         tools:ignore="MissingConstraints" />
-
+    
     <TextView
         android:layout_width="38dp"
         android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         tools:text="A" />
-
+    
     <Button
         android:id="@+id/answer_o"
         android:layout_width="162dp"
@@ -144,7 +144,7 @@
         app:layout_constraintEnd_toStartOf="@+id/answer_x"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
+    
     <Button
         android:id="@+id/answer_x"
         android:layout_width="162dp"
@@ -160,4 +160,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="1.0" />
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent">master
+    </android.support.constraint.ConstraintLayout>
