@@ -34,7 +34,7 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView : RecyclerView
-    var color = "#3333ff"
+    var color = "#000000"
     var boothNameList = arrayListOf<BoothNameList>()
     var boothList = JSONObject()
     lateinit var Authorization : String
@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         call.enqueue(object : Callback<GetMap>{
             override fun onResponse(call: Call<GetMap>?, response: Response<GetMap>) {
                 Log.e("서버접속","서버접속")
+                if(response.code()!=200) Log.e("응답코드", response.code().toString())
                 if(response.body()!=null){
                     isConnected = true
                     var repo : GetMap = response.body()
@@ -111,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                 idx++
             }
         }
-        boothNameList = arrayListOf<BoothNameList>(
+        /*boothNameList = arrayListOf<BoothNameList>(
                 BoothNameList("Undefined", color, 1),
                 BoothNameList("Gram", color, 0),
                 BoothNameList("시나브로", color, -1),
@@ -124,7 +125,7 @@ class MainActivity : AppCompatActivity() {
                 BoothNameList("Nonamed", color, 1),
                 BoothNameList("Phantom",color,0)
         )
-        boothNameList.add(BoothNameList("ClubName", color, 1))
+        boothNameList.add(BoothNameList("ClubName", color, 1))*/
     }
 
     fun setRecyclerView() : Unit{ // 리사이클러뷰 생성
@@ -150,7 +151,7 @@ class MainActivity : AppCompatActivity() {
             }
             else{ // res.contents : QR코드 스캔 결과
                 val intent = Intent(this, MultiplechoiceActivity::class.java)
-                intent.putExtra("sendBoothName", res.contents)
+                intent.putExtra("sendBoothName", res?.contents)
                 startActivity(intent)
             }
         }
