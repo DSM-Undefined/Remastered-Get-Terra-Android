@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
                     //val repoCode = response.code()
                     //if(repoCode==201){
                     color = repo.myTeamColor
+                    boothList = repo.map
                 }
                 /*}
                 else{
@@ -106,8 +107,8 @@ class MainActivity : AppCompatActivity() {
                 var b = i.next().toString()
                 keyList.add(b)
                 var t = boothList.getInt(keyList.get(idx))
+                boothNameList.add(BoothNameList(keyList.get(idx),color,t))
                 idx++
-                boothNameList.add(BoothNameList(b,color,t))
             }
         }
         boothNameList = arrayListOf<BoothNameList>(
