@@ -12,17 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MultiplechoiceActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MultiplechoiceActivity"
-            tools:ignore="DuplicateActivity" />
+        <activity android:name=".MultiplechoiceActivity"/>
         <activity android:name=".AccurateActivity"/>
-        <activity android:name="undefined.dsm.getterra.ui.FailActivity"/>
+        <activity android:name=".FailActivity"/>
     </application>
 
 </manifest>

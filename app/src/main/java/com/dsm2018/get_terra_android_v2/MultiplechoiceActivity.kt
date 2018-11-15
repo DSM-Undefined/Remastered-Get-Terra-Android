@@ -17,14 +17,13 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import undefined.dsm.getterra.ui.FailActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class MultiplechoiceActivity : AppCompatActivity() {
     var choices = ArrayList<String>()
-    lateinit var content: String
+     var content: String = ""
     var problemId: String = ""
     lateinit var contents: solveGet
     lateinit var per: String
@@ -36,16 +35,18 @@ class MultiplechoiceActivity : AppCompatActivity() {
     var answer3: String = ""
     var answer4: String = ""
 
-    val getintent = Intent(this, MainActivity::class.java)
+    /*val getintent = Intent(this, MainActivity::class.java)
     val i = getintent
     val a = i.getStringExtra("token")
     val b = i.getStringExtra("sendBoothName")
 
-
-    var authorization: String = a
-    var boothName: String = b
+*/
+    var authorization: String = ""
+    var boothName: String = ""
 
     fun get(Authorization: String, boothName: String) {
+        var Authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDIyODgwMDEsIm5iZiI6MTU0MjI4ODAwMSwianRpIjoiOGNmMmM5YjctNmVlNy00N2I4LTkxMDctMjg3YjQ0NGE4ZGUyIiwiZXhwIjoxNTQzMTUyMDAxLCJpZGVudGl0eSI6InRtZGFscyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7InVzZXJfaWQiOiJ0bWRhbHMiLCJnYW1lX2tleSI6MTAwMDAwfX0.MIROH2Weaw3XU3_4TeJ8qJpuOH1pUDn3rke3WeFhebA"
+        var boothName = "undefined"
         val api: API
         api = ServiceGenerator.createService(API::class.java)
         var rep = JsonObject()
@@ -55,7 +56,7 @@ class MultiplechoiceActivity : AppCompatActivity() {
             override fun onResponse(call: Call<solveGet>, response: Response<solveGet>) {
                 if (response.isSuccessful) {
                     contents = response.body()
-                    postcode = response.code()
+                    getcode = response.code()
                     /*BoothName = contents.get(0).getBoothName().toString()
                     choices = contents.get("choices").toString()
                     content = contents.get("content").toString()
@@ -64,18 +65,33 @@ class MultiplechoiceActivity : AppCompatActivity() {
                     this@MultiplechoiceActivity.choices = contents.choices
                     this@MultiplechoiceActivity.content = contents.content
                     this@MultiplechoiceActivity.problemId = contents.problemId
+
+
+                    val answer_1 = findViewById<Button>(R.id.answer_1)
+                    val answer_2 = findViewById<Button>(R.id.answer_2)
+                    val answer_3 = findViewById<Button>(R.id.answer_3)
+                    val answer_4 = findViewById<Button>(R.id.answer_4)
+                    val quizcontent = findViewById<TextView>(R.id.quizcontent)
+
+                    quizcontent.setText(content)
+                    answer_1.setText("   1. " + choices[0])
+                    answer_2.setText("   2. " + choices[1])
+                    answer_3.setText("   3. " + choices[2])
+                    answer_4.setText("   4. " + choices[3])
                 }
+                Log.e("서버연동성공"," ")
                 //Toast.makeText(LoginActivity.this, "서버켜짐", Toast.LENGTH_SHORT).show();
             }
 
             override fun onFailure(call: Call<solveGet>?, t: Throwable?) {
-                Log.e("asdf", "asdf")
+                Log.e("asdf", "서버연동실패")
             }
         })
     }
 
     fun post(Authorization: String, boothName: String, problemId: String, answer: String) {
-
+        var Authorization = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDIyODgwMDEsIm5iZiI6MTU0MjI4ODAwMSwianRpIjoiOGNmMmM5YjctNmVlNy00N2I4LTkxMDctMjg3YjQ0NGE4ZGUyIiwiZXhwIjoxNTQzMTUyMDAxLCJpZGVudGl0eSI6InRtZGFscyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7InVzZXJfaWQiOiJ0bWRhbHMiLCJnYW1lX2tleSI6MTAwMDAwfX0.MIROH2Weaw3XU3_4TeJ8qJpuOH1pUDn3rke3WeFhebA"
+        var boothName = "undefined"
         val api = ServiceGenerator.createService(API::class.java)
         lateinit var postobj: JsonObject
         postobj.addProperty("problemId", problemId)
@@ -84,13 +100,15 @@ class MultiplechoiceActivity : AppCompatActivity() {
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    getcode = response.code()
+                    postcode = response.code()
                 }
+                Log.e("서버연동성공", " ㅁㄴㅇㄹ")
                 //Toast.makeText(LoginActivity.this, "서버켜짐", Toast.LENGTH_SHORT).show();
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Toast.makeText(this@MultiplechoiceActivity, "서버꺼짐", Toast.LENGTH_SHORT).show()
+                Log.e("서버연동실패", "ㅁㄴㅇㄹ")
             }
         })
     }
@@ -105,6 +123,7 @@ class MultiplechoiceActivity : AppCompatActivity() {
         val answer_3 = findViewById<Button>(R.id.answer_3)
         val answer_4 = findViewById<Button>(R.id.answer_4)
         val quizcontent = findViewById<TextView>(R.id.quizcontent)
+        get("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDIyODgwMDEsIm5iZiI6MTU0MjI4ODAwMSwianRpIjoiOGNmMmM5YjctNmVlNy00N2I4LTkxMDctMjg3YjQ0NGE4ZGUyIiwiZXhwIjoxNTQzMTUyMDAxLCJpZGVudGl0eSI6InRtZGFscyIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyIsInVzZXJfY2xhaW1zIjp7InVzZXJfaWQiOiJ0bWRhbHMiLCJnYW1lX2tleSI6MTAwMDAwfX0.MIROH2Weaw3XU3_4TeJ8qJpuOH1pUDn3rke3WeFhebA", "undefined")
 
         when (getcode) {
             201 -> Toast.makeText(this, "성공", Toast.LENGTH_SHORT)
@@ -127,11 +146,6 @@ class MultiplechoiceActivity : AppCompatActivity() {
                 Toast.makeText(this, "게임종료", Toast.LENGTH_SHORT);finish()
             }
         }
-        quizcontent.setText(content)
-        answer_1.setText("   1. " + choices[0])
-        answer_1.setText("   2. " + choices[1])
-        answer_1.setText("   3. " + choices[2])
-        answer_1.setText("   4. " + choices[3])
 
         answer_1.setOnClickListener {
             post(authorization, boothName, problemId, answer1)

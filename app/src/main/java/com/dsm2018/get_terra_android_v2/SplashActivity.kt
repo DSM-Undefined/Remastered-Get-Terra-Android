@@ -14,7 +14,7 @@ class SplashActivity : Activity() {
         setContentView(R.layout.activity_spalsh)
 
         Handler().postDelayed({
-            val mainIntent = Intent(this@SplashActivity, LoginActivity::class.java)
+            val mainIntent = Intent(this@SplashActivity, MultiplechoiceActivity::class.java)
             this@SplashActivity.startActivity(mainIntent)
             this@SplashActivity.finish()
         }, SPLASH_DISPLAY_LENGTH.toLong())

@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface API {
-    @GET("/solve/{boothName}")
+    @GET("/solve/{boothName}") //
     Call<solveGet> getQuestion(
             @Header("Authorization") String authorization,
             @Path("boothName") String boothName);
